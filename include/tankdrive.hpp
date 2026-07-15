@@ -17,7 +17,7 @@ public:
 
     void controlar();
 
-
+    /*AQUI HARE EL SISTEMA DE CONDCUCCION ADAPTABLEE*/
     float rightVolt {};
 	float leftVolt {};
     
