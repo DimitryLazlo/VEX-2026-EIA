@@ -7,6 +7,7 @@ tankdrive::tankdrive(pros::MotorGroup *motorDer, pros::MotorGroup *motorIzq,
                         this->izqmotor= motorIzq;
                         this->control = mi_control;
                     }
+
 void tankdrive::controlar(){
     pros::Task maneja{[this]{
         while (true)

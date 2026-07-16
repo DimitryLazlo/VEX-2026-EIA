@@ -15,6 +15,7 @@ public:
     pros::MotorGroup *izqmotor;
     pros::Controller *control;
 
+    void adapted();
     void controlar();
 
     /*AQUI HARE EL SISTEMA DE CONDCUCCION ADAPTABLEE*/
