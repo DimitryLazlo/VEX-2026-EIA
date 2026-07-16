@@ -24,11 +24,6 @@ void tankdrive::mando(){
 
             }else{
 
- 
-                float escalarL = (left/127)*(left/127);
-
-                this->leftVolt = ((left*12000)/127)*escalarL;
-
                 this->dermotor->move_voltage(adaptedR());
                 this->izqmotor->move_voltage(adaptedL());
 
