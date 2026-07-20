@@ -15,9 +15,12 @@ public:
     pros::MotorGroup *izqmotor;
     pros::Controller *control;
 
-    void controlar();
+    float adaptedR();
+    void mando();
+    float adaptedL();
 
 
+    /*AQUI HARE EL SISTEMA DE CONDCUCCION ADAPTABLEE*/
     float rightVolt {};
 	float leftVolt {};
     
