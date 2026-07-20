@@ -1,5 +1,6 @@
 #include "tankdrive.hpp"
 #include "pros/misc.h"
+#include "math.h"
 using namespace std;
 
 tankdrive::tankdrive(pros::MotorGroup *motorDer, pros::MotorGroup *motorIzq,
@@ -36,45 +37,47 @@ void tankdrive::mando(){
 };
 }
 float tankdrive::adaptedR(){
-    pros::Task maneja{[this]{
+        int cambio = 0;
         while (true)
-        {
+        {   
+
             float right = this->control->get_analog(ANALOG_RIGHT_Y);  
-            float on = this->control->get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-            float off = this->control->get_digital(pros::E_CONTROLLER_DIGITAL_R1);
+            bool on = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1);
+            bool off = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1);
+            float escalarR = (right/127);
             if(on){
-                
-                float escalarR = (right/127)*(right/127);
-                this->rightVolt = ((right*12000)/127)*escalarR;
-
-                return this->rightVolt;
-            }else{
-                this->rightVolt = ((right*12000)/127);              
+                cambio += 1;
             }
+            else if(off && cambio>0){
+                cambio -=1;
+            }
+            this->rightVolt = ((right*12000)/127)*pow(escalarR, abs(cambio));
+            return this->rightVolt;
+            pros::delay(15);
+
         }
         
     }
-};
-}
 float tankdrive::adaptedL(){
-    pros::Task maneja{[this]{
+        int cambio = 0;
         while (true)
-        {
-            float left = this->control->get_analog(ANALOG_LEFT_Y);  
-            float on = this->control->get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-            float off = this->control->get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-            if(on){
-                
-                float escalarL = (left/127)*(left/127);
-                this->rightVolt = ((left*12000)/127)*escalarL;
+        {   
 
-                return this->rightVolt;
-            }else{
-                this->rightVolt = ((left*12000)/127);              
+            float left = this->control->get_analog(ANALOG_LEFT_Y);  
+            bool on = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1);
+            bool off = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1);
+            float escalarL = (left/127);
+            if(on){
+                cambio += 1;
             }
+            else if(off && cambio>0){
+                cambio -=1;
+            }
+            this->leftVolt = ((left*12000)/127)*pow(escalarL, abs(cambio));
+            return this->leftVolt;
+            pros::delay(15);
+
         }
         
     }
-};
-}
 

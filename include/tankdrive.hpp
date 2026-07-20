@@ -20,7 +20,7 @@ public:
     float adaptedL();
 
 
-    /*AQUI HARE EL SISTEMA DE CONDCUCCION ADAPTABLEE*/
+
     float rightVolt {};
 	float leftVolt {};
     
