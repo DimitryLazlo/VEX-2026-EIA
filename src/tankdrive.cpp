@@ -25,8 +25,8 @@ void tankdrive::mando(){
 
             }else{
 
-                this->dermotor->move_voltage(adaptedR());
-                this->izqmotor->move_voltage(adaptedL());
+                this->dermotor->move_voltage(adaptedL());
+                this->izqmotor->move_voltage(adaptedR());
 
             }
             pros::delay(15);
