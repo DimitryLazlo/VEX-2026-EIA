@@ -37,47 +37,41 @@ void tankdrive::mando(){
 };
 }
 float tankdrive::adaptedR(){
-        int cambio = 0;
-        while (true)
-        {   
+        static int cambio = 0;
 
-            float right = this->control->get_analog(ANALOG_RIGHT_Y);  
-            bool on = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1);
-            bool off = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1);
-            float escalarR = (right/127);
-            if(on){
-                cambio += 1;
-            }
-            else if(off && cambio>0){
-                cambio -=1;
-            }
-            this->rightVolt = ((right*12000)/127)*pow(escalarR, abs(cambio));
-            return this->rightVolt;
-            pros::delay(15);
-
+        float right = this->control->get_analog(ANALOG_RIGHT_Y);  
+        bool on = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1);
+        bool off = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1);
+        float escalarR = (right/127);
+        if(on){
+            cambio += 1;
         }
+        else if(off && cambio>0){
+            cambio -=1;
+        }
+        this->rightVolt = ((right*12000)/127)*pow(escalarR, abs(cambio));
+        return this->rightVolt;
+        pros::delay(15);
+
         
     }
 float tankdrive::adaptedL(){
-        int cambio = 0;
-        while (true)
-        {   
+        static int cambio1 = 0;
 
-            float left = this->control->get_analog(ANALOG_LEFT_Y);  
-            bool on = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1);
-            bool off = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1);
-            float escalarL = (left/127);
-            if(on){
-                cambio += 1;
-            }
-            else if(off && cambio>0){
-                cambio -=1;
-            }
-            this->leftVolt = ((left*12000)/127)*pow(escalarL, abs(cambio));
-            return this->leftVolt;
-            pros::delay(15);
-
+        float left = this->control->get_analog(ANALOG_LEFT_Y);  
+        bool on = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1);
+        bool off = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1);
+        float escalarL = (left/127);
+        if(on){
+            cambio1 += 1;
         }
+        else if(off && cambio1>0){
+            cambio1 -=1;
+        }
+        this->leftVolt = ((left*12000)/127)*pow(escalarL, abs(cambio1));
+        return this->leftVolt;
+        pros::delay(15);
+
         
     }
 
