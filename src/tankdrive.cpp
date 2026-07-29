@@ -49,7 +49,7 @@ float tankdrive::adaptedR(){
         else if(this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1) && cambio>0){
             cambio -=1;
         }
-        this->rightVolt = ((right*12000)/127)*pow(escalarR, abs(cambio));
+        this->rightVolt = ((right*12000)/127)*abs(pow(escalarR, abs(cambio)));
         return this->rightVolt;
         
 
@@ -68,7 +68,7 @@ float tankdrive::adaptedL(){
         else if(this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1) && cambio>0){
             cambio -=1;
         }
-        this->leftVolt = ((left*12000)/127)*pow(escalarL, abs(cambio));
+        this->leftVolt = ((left*12000)/127)*abs(pow(escalarL, abs(cambio)));
         return this->leftVolt;
         
 
