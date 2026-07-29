@@ -41,7 +41,7 @@ void initialize() {
 		while(1){
 
 			pros::lcd::print(0, "cambio: " ,robot.cambio);
-
+			pros::delay(15);
 		}
 	}};
 }
