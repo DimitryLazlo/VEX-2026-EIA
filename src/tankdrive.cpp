@@ -25,8 +25,8 @@ void tankdrive::mando(){
 
             }else{
 
-                this->dermotor->move_voltage(adaptedL());
-                this->izqmotor->move_voltage(adaptedR());
+                this->dermotor->move_voltage(adaptedR());
+                this->izqmotor->move_voltage(adaptedL());
 
             }
             pros::delay(15);
@@ -37,7 +37,6 @@ void tankdrive::mando(){
 };
 }
 float tankdrive::adaptedR(){
-        static int cambio = 0;
 
         float right = this->control->get_analog(ANALOG_RIGHT_Y);  
         //bool on = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1);
@@ -56,18 +55,19 @@ float tankdrive::adaptedR(){
         
     }
 float tankdrive::adaptedL(){
-        static int cambio = 0;
 
         float left = this->control->get_analog(ANALOG_LEFT_Y);  
         //bool on = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1);
         //bool off = this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1);
         float escalarL = (left/127);
-        if(this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1) && cambio < 3){
+        
+        /*if(this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1) && cambio < 3){
             cambio += 1;
         }
         else if(this->control->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1) && cambio>0){
             cambio -=1;
         }
+            */
         this->leftVolt = ((left*12000)/127)*abs(pow(escalarL, abs(cambio)));
         return this->leftVolt;
         

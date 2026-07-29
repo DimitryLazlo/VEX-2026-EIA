@@ -20,6 +20,7 @@ public:
     float adaptedL();
 
 
+    int cambio = 0; 
 
     float rightVolt {};
 	float leftVolt {};
