@@ -13,7 +13,6 @@
  */
 tankdrive robot(&right_m, &left_m ,&mi_control);
 
-
 void on_center_button() {
 	static bool pressed = false;
 	pressed = !pressed;

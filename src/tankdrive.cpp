@@ -24,7 +24,19 @@ void tankdrive::mando(){
                 
 
             }else{
+ 
+                double positonD = this-> dermotor->get_position();
+                printf("Posicion: %.2f\n", positonD);
+                
+                double rpmD = this -> dermotor-> get_actual_velocity();
+                printf("RPM: %.2f\n", rpmD);
 
+                double positonL = this-> dermotor->get_position();
+                printf("Posicion: %.2f\n", positonL);
+                
+                double rpmL = this -> dermotor-> get_actual_velocity();
+                printf("RPM: %.2f\n", rpmL);
+                
                 this->dermotor->move_voltage(adaptedR());
                 this->izqmotor->move_voltage(adaptedL());
 
