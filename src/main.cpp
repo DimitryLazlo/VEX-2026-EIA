@@ -30,19 +30,31 @@ void on_center_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User!");
+    pros::lcd::initialize();
+    pros::lcd::set_text(1, "Motor data:");
 
-	pros::lcd::register_btn1_cb(on_center_button);
+    pros::Task datos_motor([] {
+        while (true) {
+            pros::lcd::print(0, "Ang: %.1f deg",
+                             right_m.get_position());
 
-	pros::Task potencia_tk{[=]{
+            pros::lcd::print(1, "Power: %.2f W",
+                             right_m.get_power());
 
-		while(1){
+            pros::lcd::print(2, "Torque: %.3f Nm",
+                             right_m.get_torque());
 
-			pros::lcd::print(0, "cambio: " ,robot.cambio);
-			pros::delay(15);
-		}
-	}};
+            pros::lcd::print(3, "Volt: %.2f V",
+                             right_m.get_voltage() / 1000.0);
+
+            pros::lcd::print(4, "Current: %.2f A",
+                             right_m.get_current_draw() / 1000.0);
+
+            pros::delay(100);
+        }
+    });
+
+    pros::lcd::register_btn1_cb(on_center_button);
 }
 
 /**
