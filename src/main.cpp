@@ -2,6 +2,7 @@
 #include <iostream>
 #include "main.h"
 #include "lemlib/api.hpp"
+#include "autonomous.hpp"
 #include "paragrams.hpp"
 
 /**
@@ -12,6 +13,20 @@
  * 
  */
 tankdrive robot(&right_m, &left_m ,&mi_control);
+Auto auton(
+    &right_m,
+    &left_m,
+    &imu,
+    &horizontal,
+    &vertical,
+    0.0,    // horizontalOffset: reemplazar por tu valor
+    0.0,    // verticalOffset: reemplazar por tu valor
+    1000.0,  // kP: 
+    0.0,     // kI
+    0.0,     // kD
+    0.05     // dt: 50 ms, solo si tu controlador lo espera en segundos
+);
+
 
 void on_center_button() {
 	static bool pressed = false;
@@ -86,7 +101,11 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+    auton.calibrate_sensors();
+
+    auton.move_to_pose(0, 24, 0);
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task
