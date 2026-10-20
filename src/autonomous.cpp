@@ -261,22 +261,26 @@ void Auto::move_to_pose(int x, int y, float heading){
 
 };
 void Auto::pruebas(){
-    rightM->move_voltage(900);
-    leftM->move_voltage(900);
-    pros::delay(2000);
+    while (1)
+    {
+    
+        rightM->move_voltage(900);
+        leftM->move_voltage(900);
+        pros::delay(2000);
 
-    // Escalón 2: 1000 mV
-    rightM->move_voltage(1000);
-    leftM->move_voltage(1000);
-    pros::delay(2000);
+        // Escalón 2: 1000 mV
+        rightM->move_voltage(1000);
+        leftM->move_voltage(1000);
+        pros::delay(2000);
 
-    // Escalón 3: 11000 mV
-    rightM->move_voltage(11000);
-    leftM->move_voltage(11000);
-    pros::delay(2000);
+        // Escalón 3: 11000 mV
+        rightM->move_voltage(11000);
+        leftM->move_voltage(11000);
+        pros::delay(2000);
 
-    // Escalón 4: 12000 mV
-    rightM->move_voltage(12000);
-    leftM->move_voltage(12000);
-    pros::delay(2000);
+        // Escalón 4: 12000 mV
+        rightM->move_voltage(12000);
+        leftM->move_voltage(12000);
+        pros::delay(2000);
+    }
 }
