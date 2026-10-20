@@ -122,4 +122,5 @@ void autonomous() {
  */
 void opcontrol() {
 	//robot.mando();
+    auton.pruebas();
 }
