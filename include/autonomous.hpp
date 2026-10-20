@@ -34,6 +34,7 @@ class Auto {
         float getDist(float xf, float yf);
 
         void move_to_pose(int x, int y, float heading);
+        void pruebas();
 
         double wrapToPi(double num);
 
@@ -71,5 +72,6 @@ class Auto {
         double prevVerAng {};
 
         const double to_rad {M_PI/18000.};
+
         
 };
