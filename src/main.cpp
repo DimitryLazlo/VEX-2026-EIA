@@ -50,6 +50,7 @@ void initialize() {
 
     pros::Task datos_motor([] {
         while (true) {
+            auton.pruebas();
             pros::lcd::print(0, "Ang: %.1f deg",
                              right_m.get_position());
 
@@ -90,7 +91,7 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-    auton.pruebas();
+    
 }
 
 /**
