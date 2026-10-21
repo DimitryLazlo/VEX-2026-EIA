@@ -50,7 +50,7 @@ void initialize() {
 
     pros::Task datos_motor([] {
         while (true) {
-            auton.pruebas();
+            
             pros::lcd::print(0, "Ang: %.1f deg",
                              right_m.get_position());
 
@@ -71,6 +71,7 @@ void initialize() {
     });
 
     pros::lcd::register_btn1_cb(on_center_button);
+    auton.pruebas();
     
 }
 
